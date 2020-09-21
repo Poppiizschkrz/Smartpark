@@ -35,6 +35,54 @@ class _AuthenState extends State<Authen> {
     );
   }
 
+  Widget emailTextFormFeild() {
+    return Container(
+      width: size,
+      child: TextFormField(
+        style: TextStyle(
+          color: Colors.red[300],
+        ),
+        keyboardType: TextInputType.emailAddress,
+        decoration: InputDecoration(
+            icon: Icon(
+              Icons.email,
+              size: 50.0,
+              color: Colors.red[200],
+            ),
+            labelText: 'User',
+            labelStyle: TextStyle(
+              color: Colors.pink[500],
+            ),
+            hintText: 'abcde@email.com'),
+      ),
+    );
+  }
+
+  Widget passwordText() {
+    return Container(
+      width: 250.0,
+      child: TextFormField(
+        obscureText: true, //secure password
+        style: TextStyle(
+          color: Colors.red[300],
+        ),
+        keyboardType: TextInputType.text,
+        decoration: InputDecoration(
+          icon: Icon(
+            Icons.lock,
+            size: 50.0,
+            color: Colors.red[200],
+          ),
+          labelText: 'Password : ',
+          labelStyle: TextStyle(
+            color: Colors.pink[500],
+          ),
+          hintText: 'More 6 Charactor',
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,6 +95,8 @@ class _AuthenState extends State<Authen> {
             //Text('MY AUTHEN'),
             showLogo(),
             showAppName(),
+            emailTextFormFeild(),
+            passwordText(),
           ],
         ),
       ),
