@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "161640389494",
+    "firebase_url": "https://smartpark-284.firebaseio.com",
+    "project_id": "smartpark-284",
+    "storage_bucket": "smartpark-284.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:161640389494:android:32e883643313ba05f1b857",
+        "android_client_info": {
+          "package_name": "com.Poppiiz.Smartpark"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "161640389494-7f33v9cvlpgi3im6lsmuavsdsh1pnrmi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9qE0AYlECzNao2AfEflYZhCNYU8cL44c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "161640389494-7f33v9cvlpgi3im6lsmuavsdsh1pnrmi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
