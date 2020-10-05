@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:Smartpark/screens/my_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class Authen extends StatefulWidget {
   @override
@@ -11,7 +12,9 @@ class _AuthenState extends State<Authen> {
   double amount = 150.0;
   double size = 250.0;
   String emailString, passwordString;
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   final formkey = GlobalKey<FormState>();
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   bool checkSpace(String value) {
     // check mail pass
@@ -79,6 +82,26 @@ class _AuthenState extends State<Authen> {
     );
   }
 
+  void moveToMyService(BuildContext context) {
+    var myServiceRoute =
+        MaterialPageRoute(builder: (BuildContext context) => MyService());
+    Navigator.of(context)
+        .pushAndRemoveUntil(myServiceRoute, (Route<dynamic> route) => false);
+  }
+
+  void checkAuthen(BuildContext context) async {
+    await firebaseAuth
+        .signInWithEmailAndPassword(
+            email: emailString, password: passwordString)
+        .then((objValue) {
+      moveToMyService(context);
+      // print('athen ok');
+    }).catchError((objValue) {
+      String error = objValue.message;
+      print('ERROR $error');
+    });
+  }
+
   Widget signInButton(BuildContext context) {
     return Expanded(
       child: FlatButton(
@@ -91,9 +114,10 @@ class _AuthenState extends State<Authen> {
           style: TextStyle(color: Colors.white),
         ),
         onPressed: () {
-          print('Your click login');
-          formkey.currentState.save();
-          print('Email=$emailString,password=$passwordString');
+          if (formkey.currentState.validate()) {
+            formkey.currentState.save();
+            checkAuthen(context);
+          }
         },
       ),
     );
@@ -151,6 +175,7 @@ class _AuthenState extends State<Authen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       resizeToAvoidBottomPadding: false,
       body: Container(
         alignment: Alignment(0, -1),
