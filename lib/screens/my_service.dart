@@ -7,21 +7,26 @@ class MyService extends StatefulWidget {
 
 class _MyServiceState extends State<MyService> {
   Widget button() {
-    return RaisedButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
-        ),
-        color: Colors.pink[300],
-        textColor: Colors.white,
-        child: Text('Button'),
-        onPressed: () {});
+    return Container(
+      margin: EdgeInsets.only(top: 500),
+      alignment: Alignment.center,
+      child: RaisedButton(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30.0),
+          ),
+          color: Colors.pink[300],
+          textColor: Colors.white,
+          child: Text('Button'),
+          onPressed: () {}),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Welcome to SmartParking'),
+        backgroundColor: Colors.pink[200],
+        title: Text('Welcome To SmartParking'),
       ),
       body: Center(
         child: Container(
