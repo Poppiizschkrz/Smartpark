@@ -1,6 +1,9 @@
 // import 'dart:html';
-import 'dart:js_util';
+// import 'dart:ffi';
+import 'dart:io';
+// import 'dart:js_util';
 
+import 'package:Smartpark/screens/authen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -22,7 +25,7 @@ class _MyServiceState extends State<MyService> {
   String temp_inside = 'https://github.com/Poppiizschkrz/Smartpark';
   WebController webController;
   String nameLogin = "", uidString;
-  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  FirebaseAuth firebaseAuthMyService = FirebaseAuth.instance;
 
   void onWebCreatedTempInside(webController) {
     this.webController = webController;
@@ -85,6 +88,7 @@ class _MyServiceState extends State<MyService> {
           }),
     );
   }
+
   // Widget buttonlogout() {
   //   return Container(
   //     margin: EdgeInsets.only(top: 500),
@@ -100,6 +104,35 @@ class _MyServiceState extends State<MyService> {
   //         }),
   //   );
   // }
+  Widget signOutButton() {
+    return IconButton(
+      icon: Icon(Icons.exit_to_app),
+      tooltip: "sing Out",
+      onPressed: () {
+        signOut2();
+      },
+    );
+  }
+
+  void signOut() async {
+    await firebaseAuthMyService.signOut().then((objValue) {
+      print('Exit');
+      exit(0);
+    });
+  }
+
+  Future<void> signOut2() async {
+    await firebaseAuthMyService.signOut().then((response) {
+      MaterialPageRoute materialPageRoute =
+          MaterialPageRoute(builder: (BuildContext context) {
+        return Authen();
+      });
+      Navigator.of(context).pushAndRemoveUntil(materialPageRoute,
+          (Route<dynamic> route) {
+        return false;
+      });
+    });
+  }
 
   Widget build(BuildContext context) {
     FlutterNativeWeb flutterNativeWebTempInside = new FlutterNativeWeb(
@@ -114,6 +147,9 @@ class _MyServiceState extends State<MyService> {
       appBar: AppBar(
         backgroundColor: Colors.pink[200],
         title: Text('Welcome To SmartParking'),
+        actions: [
+          signOutButton(),
+        ],
       ),
       body: Center(
         child: Container(
