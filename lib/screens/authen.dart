@@ -72,7 +72,7 @@ class _AuthenState extends State<Authen> {
             hintText: 'abcde@email.com'),
         validator: (String value) {
           if (checkSpace(value)) {
-            return 'Please Tyoe in Email';
+            return 'Please Type in Email';
           }
         },
         onSaved: (String value) {
